@@ -5,3 +5,5 @@
 
 #Artifacts from vscode
 .vscode/*
+compile_commands.json
+geometric_controller/.cache
