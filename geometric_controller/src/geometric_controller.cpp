@@ -39,6 +39,7 @@
  */
 
 #include "geometric_controller/geometric_controller.h"
+#include <string>
 
 using namespace Eigen;
 using namespace std;
@@ -397,12 +398,15 @@ void geometricCtrl::computeBodyRateCmd(Eigen::Vector4d &bodyrate_cmd, const Eige
   bool jerk_enabled = false;
   if (!jerk_enabled) {
     if (ctrl_mode_ == ERROR_GEOMETRIC) {
+      ROS_INFO("using geometric_controller");
       bodyrate_cmd = geometric_attcontroller(q_des, a_des, mavAtt_);  // Calculate BodyRate
 
     } else {
+      ROS_INFO("using attitude_controller");
       bodyrate_cmd = attcontroller(q_des, a_des, mavAtt_);  // Calculate BodyRate
     }
   } else {
+    ROS_INFO("using jerk_controller");
     bodyrate_cmd = jerkcontroller(targetJerk_, a_des, q_des, mavAtt_);
   }
 }
@@ -415,9 +419,14 @@ Eigen::Vector3d geometricCtrl::poscontroller(const Eigen::Vector3d &pos_error, c
     a_fb = (max_fb_acc_ / a_fb.norm()) * a_fb;  // Clip acceleration if reference is too large
 
   int i{0};
-  ROS_INFO("pos_error: ");
-  // for(i=0; i< pos_error.size(); i++)
-  //   pos_error.innerStride
+  // initialize string to be printed for debugging
+  string imprimendo{"pos error: "};
+  for(i=0; i< pos_error.size(); i++) {
+    imprimendo.append(to_string(pos_error(i)) );
+    imprimendo.append(" ");
+  }
+  ROS_INFO("%s", imprimendo.c_str());
+
   return a_fb;
 }
 
