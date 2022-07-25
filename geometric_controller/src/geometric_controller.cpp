@@ -418,7 +418,7 @@ Eigen::Vector3d geometricCtrl::poscontroller(const Eigen::Vector3d &pos_error, c
   if (a_fb.norm() > max_fb_acc_)
     a_fb = (max_fb_acc_ / a_fb.norm()) * a_fb;  // Clip acceleration if reference is too large
 
-  int i{0};
+  // int i{0};
   // initialize string to be printed for debugging
   // string imprimendo{"pos error: "};
   // for(i=0; i< pos_error.size(); i++) {
