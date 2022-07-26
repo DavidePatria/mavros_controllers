@@ -20,7 +20,8 @@ private:
 
 	float trigger_distance_;
 	// actual as in "ahora"
-	geometry_msgs::Pose actual_goal_;
+	// geometry_msgs::Pose actual_goal_;
+	trajectory_msgs::MultiDOFJointTrajectoryPoint actual_goal_;
 	// for internal use and tracking
 	geometry_msgs::Pose pose_;
 
