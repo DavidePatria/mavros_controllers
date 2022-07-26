@@ -37,6 +37,11 @@ include_directories(
 add_library(${PROJECT_NAME}
   src/geometric_controller.cpp 
 )
+
+add_library(slower_msg
+  src/slower_msg.cpp
+)
+
 add_dependencies(geometric_controller ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
